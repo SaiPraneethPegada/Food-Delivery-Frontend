@@ -1,12 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from "@mui/icons-material/Visibility";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Spinner from "react-bootstrap/Spinner";
 import { API_URL } from "../../App";
 import IntroNavBar from "./IntroNavBar";
 
@@ -19,11 +24,16 @@ export default function Signup() {
   const [message, setMessage] = useState("");
   const [submitBtn, setSubmitBtn] = useState("Submit");
   const [status, setStatus] = useState("primary");
+  const [loading, setLoading] = useState(false);
+  const [showPw, setShowPw] = useState(false);
 
   let navigate = useNavigate();
 
+  const togglePw = () => setShowPw(!showPw);
+
   const handleSubmit = async () => {
     // console.log(role, firstName, lastName, email, password);
+    setLoading(true);
     let res = await axios.post(`${API_URL}/users/signup`, {
       role,
       firstName,
@@ -40,6 +50,7 @@ export default function Signup() {
       setStatus("error");
       setSubmitBtn("Retry");
     }
+    setLoading(false);
   };
 
   return (
@@ -81,10 +92,24 @@ export default function Signup() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          type="password"
+          type={showPw ? "text" : "password"}
           name="password"
           label="Password"
           variant="outlined"
+          value={password}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePw}
+                  edge="end"
+                >
+                  {showPw ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button
@@ -92,19 +117,12 @@ export default function Signup() {
           variant="contained"
           onClick={() => handleSubmit()}
         >
-          {submitBtn}
+          {loading ? <Spinner animation="border" variant="light" /> : submitBtn}
         </Button>
         <div className="d-flex justify-content-end">
-          <button
-            className="border-0 bg-white"
-            style={{
-              color: "#006fff",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/login")}
-          >
-            <u>Already Registered</u>??
-          </button>
+          <Link to="/login" >
+            Already Registered??
+          </Link>
         </div>
         {message ? (
           <div className="text-center text-danger">{message}</div>

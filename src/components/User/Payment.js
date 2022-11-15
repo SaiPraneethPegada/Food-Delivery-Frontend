@@ -6,6 +6,7 @@ import TopBar from "./TopBar";
 import { cartContext, addressContext, API_URL } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 function Payment() {
   let [total, setTotal] = useState(0);
@@ -109,7 +110,12 @@ function Payment() {
     setTotal(sum);
   }, [cartStore.cart]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center align-content-center">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <>

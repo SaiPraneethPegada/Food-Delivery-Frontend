@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 
 import { API_URL } from "../../App";
+import { CircularProgress } from "@mui/material";
 
 function Dashboard() {
   let [data, setData] = useState([]);
@@ -44,7 +45,12 @@ function Dashboard() {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <>

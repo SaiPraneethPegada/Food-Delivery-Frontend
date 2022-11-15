@@ -12,8 +12,8 @@ import Success from "./components/User/Success";
 import OrderDetails from "./components/User/OrderDetails";
 import Orders from "./components/User/Orders";
 import Payment from "./components/User/Payment";
-// export const API_URL = "http://localhost:8000";
-export const API_URL = "https://food-delivery-be.herokuapp.com";
+export const API_URL = "http://localhost:8000";
+// export const API_URL = "https://food-delivery-be.herokuapp.com";
 export const cartContext = createContext();
 export const addressContext = createContext();
 

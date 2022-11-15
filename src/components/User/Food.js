@@ -5,6 +5,7 @@ import TopBar from "./TopBar";
 import { API_URL } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { cartContext } from "../../App";
+import { CircularProgress } from "@mui/material";
 
 function Food() {
   const [data, setData] = useState([]);
@@ -57,7 +58,12 @@ function Food() {
 
   // console.log(dup);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center align-content-center">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <>
