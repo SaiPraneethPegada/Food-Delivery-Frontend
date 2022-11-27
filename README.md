@@ -1,6 +1,6 @@
-# Food-Delivery-Frontend
+# Food-Delivery-App
 
-> Deployed URL : https://food-delivery-fe.netlify.app
+## [Live URL](https://food-delivery-fe.netlify.app) | [Backend Source_code](https://github.com/SaiPraneethPegada/Food-Delivery-Backend.git)
 
 Login Demo Credentials:
 
@@ -12,4 +12,3 @@ Login Demo Credentials:
       Email: admin@admin.com 
       Password: Admin@123
       
-> Backend Source-code : https://github.com/SaiPraneethPegada/Food-Delivery-Backend.git
